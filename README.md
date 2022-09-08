@@ -113,7 +113,7 @@ Below is a list of the required API's for the application.
 
 Given the time expectations of this exercise, we don't expect anyone to submit anything super fancy, but if you find yourself with extra time, any extra credit item(s) that showcase your unique strengths would be awesome! 🙌
 
-It would be great for example if you'd write some unit test / simple frontend demostrating calls to your fresh APIs.
+It would be great for example if you'd write some unit test / simple frontend demonstrating calls to your fresh APIs.
 
   
 
@@ -124,3 +124,21 @@ When you have finished the assignment, create a github repository and send us th
   
 
 Thank you and good luck! 🙏
+
+## Commit-msg
+
+The commit-msg hook consist in running two commands:
+
+- **lint-commit-msg** which check if the commit msg has the following structure:
+  `type(scope?): subject`
+  - Real example: `fix(server): send cors headers DEE-123`
+  - The tool used to check the message is this: [COMMIT LINT](https://commitlint.js.org/#/)
+  - There is a preset configured, that there is a need to add also the TASK ID in the commit
+    message, like: `DEE-id`
+- **spell-check**
+  - It check if you spelled correctly all the words, semantically and grammatically
+
+This is an example of a successful hook and a failure:
+
+- ✔️ lint-commit-msg
+- 🥊 spell-check

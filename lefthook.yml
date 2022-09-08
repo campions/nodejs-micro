@@ -1,0 +1,17 @@
+pre-commit:
+  parallel: true
+  commands:
+    # check spelling issues in the files
+    spelling:
+      glob: "*.{js,jsx,md}"
+      run: npx cspell --no-progress -u {staged_files}
+    markdown-link-check:
+      glob: "*.md"
+      run: npx markdown-link-check -c markdown-link-check-config.json {staged_files}
+commit-msg:
+  parallel: true
+  commands:
+    lint-commit-msg:
+      run: npx commitlint --edit
+    spell-check:
+      run: npx cspell --no-summary {1}
