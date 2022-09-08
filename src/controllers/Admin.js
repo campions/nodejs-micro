@@ -2,9 +2,9 @@
 const { Op } = require("sequelize");
 
 const controllers = {
-  getContract: async (req, res) => {
-    const { Contract } = req.app.get("models");
-    const { id } = req.params;
+  getBestProfession: async (req, res) => {
+    const { Contract, Job } = req.app.get("models");
+    const { start, end } = req.params;
     const contract = await Contract.findOne({
       where: {
         id,
@@ -17,8 +17,9 @@ const controllers = {
     if (!contract) return res.status(404).end();
     res.json(contract);
   },
-  getAllContracts: async (req, res) => {
-    const { Contract } = req.app.get("models");
+  getBestClients: async (req, res) => {
+    const { Contract, Profile } = req.app.get("models");
+    const { start, end, limit } = req.params;
     const contracts = await Contract.findAll({
       where: {
         status: {
