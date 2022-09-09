@@ -1,8 +1,8 @@
-"use strict";
+const { fn, col } = require('sequelize');
 
 const controllers = {
   deposit: async (req, res) => {
-    const { Profile } = req.app.get("models");
+    const { Profile, Job } = req.app.get('models');
     const { userId } = req.params;
     const { amount } = req.body;
     const profile = await Profile.findOne({
@@ -14,14 +14,23 @@ const controllers = {
     if (!profile) {
       return res.status(400).json({
         status: 400,
-        message: "The user does not exist",
+        message: 'The user does not exist',
       });
     }
 
-    if (profile.balance <= profile.balance) {
+    const clients = await profile.getClient();
+    // W: From my point of view a profile should be unique per client/contractor
+    const job = await Job.findOne({
+      where: {
+        ContractId: clients[0].id,
+      },
+      attributes: ['ContractId', [fn('sum', col('price')), 'totalAmount']],
+      group: ['ContractId'],
+    });
+
+    if (amount <= job.dataValues.totalAmount * 0.25) {
       try {
-        await job.update({ paid: true });
-        await profile.update({ balance: profile.balance - job.price });
+        await profile.update({ balance: profile.balance + amount });
         res.status(201).json({
           status: 201,
         });
@@ -29,9 +38,9 @@ const controllers = {
         res.status(500).end();
       }
     } else {
-      res.status(400).json({
-        status: 400,
-        message: "The profile balance is lower than the price of the job",
+      res.status(500).json({
+        status: 500,
+        message: 'The amount to deposit is too big!',
       });
     }
   },

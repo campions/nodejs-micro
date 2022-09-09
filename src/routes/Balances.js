@@ -1,8 +1,8 @@
-"use strict";
-const express = require("express");
-const router = express.Router();
-const balances = require("../controllers/Balances");
+const express = require('express');
 
-router.post("/deposit/:userId", balances.deposit);
+const router = express.Router();
+const balances = require('../controllers/Balances');
+
+router.post('/deposit/:userId', balances.deposit);
 
 module.exports = router;

@@ -1,9 +1,8 @@
-"use strict";
-const { Op } = require("sequelize");
+const { Op } = require('sequelize');
 
 const controllers = {
   getContract: async (req, res) => {
-    const { Contract } = req.app.get("models");
+    const { Contract } = req.app.get('models');
     const { id } = req.params;
     const contract = await Contract.findOne({
       where: {
@@ -18,11 +17,11 @@ const controllers = {
     res.json(contract);
   },
   getAllContracts: async (req, res) => {
-    const { Contract } = req.app.get("models");
+    const { Contract } = req.app.get('models');
     const contracts = await Contract.findAll({
       where: {
         status: {
-          [Op.not]: "terminated",
+          [Op.not]: 'terminated',
         },
         [Op.or]: [
           { ContractorId: req.profile.id },

@@ -1,9 +1,9 @@
-"use strict";
-const express = require("express");
-const router = express.Router();
-const admin = require("../controllers/Admin");
+const express = require('express');
 
-router.post("/best-profession", admin.getBestProfession);
-router.post("/best-clients", admin.getBestClients);
+const router = express.Router();
+const admin = require('../controllers/Admin');
+
+router.get('/best-profession', admin.getBestProfession);
+router.get('/best-clients', admin.getBestClients);
 
 module.exports = router;

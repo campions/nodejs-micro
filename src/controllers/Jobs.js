@@ -1,11 +1,12 @@
-"use strict";
-const { Op } = require("sequelize");
+/* eslint-disable camelcase */
+
+const { Op } = require('sequelize');
 
 const controllers = {
   getUnpaidJobs: async (req, res) => {
-    const { Job, Contract } = req.app.get("models");
+    const { Job, Contract } = req.app.get('models');
     const { id } = req.profile;
-    let jobs = await Job.findAll({
+    const jobs = await Job.findAll({
       where: {
         paid: {
           [Op.is]: null,
@@ -26,7 +27,7 @@ const controllers = {
   },
 
   payJob: async (req, res) => {
-    const { Job, Profile } = req.app.get("models");
+    const { Job, Profile } = req.app.get('models');
     const { job_id } = req.params;
     const { id } = req.profile;
     const job = await Job.findOne({
@@ -45,7 +46,7 @@ const controllers = {
     if (!job) {
       return res.status(400).json({
         status: 400,
-        message: "The job is paid or does not exist",
+        message: 'The job is paid or does not exist',
       });
     }
 
@@ -60,9 +61,9 @@ const controllers = {
         res.status(500).end();
       }
     } else {
-      res.status(400).json({
-        status: 400,
-        message: "The profile balance is lower than the price of the job",
+      res.status(500).json({
+        status: 500,
+        message: 'The profile balance is lower than the price of the job',
       });
     }
   },

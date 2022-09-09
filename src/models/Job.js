@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-  const Job = sequelize.define("Job", {
+  const Job = sequelize.define('Job', {
     description: {
       type: Sequelize.TEXT,
       allowNull: false,
