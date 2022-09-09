@@ -14,7 +14,7 @@ const controllers = {
     if (!profile) {
       return res.status(400).json({
         status: 400,
-        message: 'The user does not exist',
+        message: 'The user does not exist, bad request',
       });
     }
 

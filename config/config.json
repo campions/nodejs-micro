@@ -1,0 +1,20 @@
+{
+    "development": {
+      "storage": "./database.sqlite3",
+      "name": "./database.sqlite3",
+      "host": "127.0.0.1",
+      "dialect": "sqlite"
+    },
+    "test": {
+      "storage": "./database.sqlite3",
+      "name": "./database.sqlite3",
+      "host": "127.0.0.1",
+      "dialect": "sqlite"
+    },
+    "production": {
+      "storage": "./database.sqlite3",
+      "name": "./database.sqlite3",
+      "host": "127.0.0.1",
+      "dialect": "sqlite"
+    }
+  }

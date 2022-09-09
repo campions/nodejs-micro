@@ -17,7 +17,7 @@ const controllers = {
           include: [
             {
               model: Profile,
-              as: 'Client',
+              as: 'Contractor',
             },
           ],
         },
